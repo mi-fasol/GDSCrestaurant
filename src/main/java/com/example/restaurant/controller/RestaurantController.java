@@ -28,4 +28,16 @@ public class RestaurantController {
         Restaurant savedRestaurant = restaurantService.saveRestaurant(restaurant);
         return new ResponseEntity<>(savedRestaurant, HttpStatus.CREATED);
     }
+
+    @GetMapping(produces = "application/json")
+    public List<Restaurant> findAllRestaurant(){
+        return restaurantService.findAllRestaurant();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<Restaurant> getPostById(@PathVariable Long id) {
+        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
+        return restaurantOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }

@@ -20,4 +20,13 @@ public class RestaurantService {
     }
 
     public Restaurant saveRestaurant(Restaurant restaurant) {return restaurantRepository.save(restaurant);}
+
+    public List<Restaurant> findAllRestaurant(){
+        return restaurantRepository.findAll();
+    }
+
+    public Restaurant findRestaurantById(Long id) {
+        return restaurantRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
 }
