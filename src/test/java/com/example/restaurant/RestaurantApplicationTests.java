@@ -12,13 +12,7 @@ import java.util.List;
 @SpringBootTest
 class RestaurantApplicationTests {
 
-	@Autowired
-	RestaurantService restaurantService;
-
-
 	@Test
 	public void contextLoads() {
-
-		restaurantService.deleteRestaurant(2L);
 	}
 }

@@ -30,7 +30,7 @@ public class RestaurantController {
     }
 
     @GetMapping(produces = "application/json")
-    public List<Restaurant> findAllRestaurant(){
+    public List<Restaurant> findAllRestaurant() {
         return restaurantService.findAllRestaurant();
     }
 
@@ -44,5 +44,11 @@ public class RestaurantController {
     @PutMapping("/{id}/{category}")
     public Restaurant updateRestaurant(@PathVariable Long id, @PathVariable String category) {
         return restaurantService.updateRestaurant(id, category);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteMember(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
     }
 }
