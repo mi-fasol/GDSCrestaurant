@@ -29,4 +29,11 @@ public class RestaurantService {
         return restaurantRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
+    @Transactional
+    public Restaurant updateRestaurant(Long id, String category){
+        Restaurant restaurantData = restaurantRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        restaurantData.setCategory(category);
+        return restaurantRepository.save(restaurantData);
+    }
+
 }

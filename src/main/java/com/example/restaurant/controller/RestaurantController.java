@@ -40,4 +40,9 @@ public class RestaurantController {
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
         return restaurantOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{id}/{category}")
+    public Restaurant updateRestaurant(@PathVariable Long id, @PathVariable String category) {
+        return restaurantService.updateRestaurant(id, category);
+    }
 }
