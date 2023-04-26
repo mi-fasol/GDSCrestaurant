@@ -36,7 +36,7 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Restaurant> getPostById(@PathVariable Long id) {
+    public ResponseEntity<Restaurant> findRestaurantById(@PathVariable Long id) {
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
         return restaurantOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
