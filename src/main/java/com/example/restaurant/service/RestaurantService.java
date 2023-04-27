@@ -1,9 +1,9 @@
 package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Restaurant;
+import com.example.restaurant.domain.RestaurantDto;
 import com.example.restaurant.repository.RestaurantRepository;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,14 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    public Restaurant findRestaurantById(Long id) {
-        return restaurantRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    public RestaurantDto findRestaurantById(Long id) {
+        Restaurant restaurantData =  restaurantRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        RestaurantDto dto = new RestaurantDto();
+        dto.setName(restaurantData.getName());
+        dto.setCategory(restaurantData.getCategory());
+        dto.setCreateAt(restaurantData.getCreateAt());
+
+        return dto;
     }
 
     @Transactional

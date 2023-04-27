@@ -1,6 +1,7 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Restaurant;
+import com.example.restaurant.domain.RestaurantDto;
 import com.example.restaurant.repository.RestaurantRepository;
 import com.example.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,8 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Restaurant> findRestaurantById(@PathVariable Long id) {
-        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
-        return restaurantOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public RestaurantDto findRestaurantById(@PathVariable Long id) {
+        return restaurantService.findRestaurantById(id);
     }
 
     @PutMapping("/{id}/{category}")
